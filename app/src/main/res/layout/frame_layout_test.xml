@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View android:layout_height="20dp"
+        android:layout_width="20dp"
+        android:background="@color/colorAccent"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"/>
+
+    <include
+        layout="@layout/merge_test"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/parcelableClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="Parcelable Click"
+            android:onClick="onParcelClick"/>
+
+        <Button
+            android:id="@+id/startServiceClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="Start Service Click"
+            android:onClick="onStartServiceClick"/>
+
+        <Button
+            android:id="@+id/messengerClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="Messenger Click"
+            android:onClick="onMessengerClick"/>
+    </LinearLayout>
+</FrameLayout>
