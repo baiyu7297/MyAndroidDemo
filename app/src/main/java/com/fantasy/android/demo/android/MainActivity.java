@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.fantasy.android.demo.R;
+import com.fantasy.android.demo.android.socket.SocketService;
+import com.fantasy.android.demo.android.socket.SocketTestActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,6 +28,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -211,5 +214,78 @@ public class MainActivity extends Activity {
         } else {
             Toast.makeText(this, "Server is not running", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private IBookManager mBookManager;
+    public void onAidlAddBook(View v) {
+        if (mBookManager == null) {
+            Intent intent = new Intent(this, BookManagerService.class);
+            bindService(intent, new ServiceConnection() {
+                @Override
+                public void onServiceConnected(ComponentName name, IBinder service) {
+                    mBookManager = IBookManager.Stub.asInterface(service);
+                    Toast.makeText(MainActivity.this,
+                            "book service不存在,已创建", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onServiceDisconnected(ComponentName name) {
+
+                }
+            }, Context.BIND_AUTO_CREATE);
+        } else {
+            try {
+                Book book = new Book("santi", 150);
+                mBookManager.addBook(book);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void onAidlGetBooks(View v) {
+        if (mBookManager != null) {
+            try {
+                List<Book> bookList = mBookManager.getBookList();
+                Log.d(TAG, "bookList = " + bookList);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private IOnNewBookArrived mNewBookArrivedListener = new IOnNewBookArrived.Stub() {
+        @Override
+        public void onNewBookArrived(Book book) throws RemoteException {
+            Toast.makeText(MainActivity.this,
+                    "新书来了:" + book, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    public void listenNewBook(View v) {
+        if (mBookManager != null) {
+            try {
+                mBookManager.registerOnNewBookArrived(mNewBookArrivedListener);
+                Toast.makeText(MainActivity.this, "开始监听", Toast.LENGTH_SHORT).show();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void unListenNewBook(View v) {
+        if (mBookManager != null && mNewBookArrivedListener != null) {
+            try {
+                mBookManager.unregisterOnNewBookArrived(mNewBookArrivedListener);
+                Toast.makeText(MainActivity.this, "取消监听", Toast.LENGTH_SHORT).show();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void startSocket(View v) {
+        Intent intent = new Intent(this, SocketTestActivity.class);
+        startActivity(intent);
     }
 }

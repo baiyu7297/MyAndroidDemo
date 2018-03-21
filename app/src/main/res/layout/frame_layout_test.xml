@@ -42,5 +42,50 @@
             android:layout_marginRight="30dp"
             android:text="Messenger Click"
             android:onClick="onMessengerClick"/>
+
+        <Button
+            android:id="@+id/aidlAddBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="添加图书"
+            android:onClick="onAidlAddBook"/>
+
+        <Button
+            android:id="@+id/aidlGetBooks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="获取图书"
+            android:onClick="onAidlGetBooks"/>
+
+        <Button
+            android:id="@+id/listenNewBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="开始监听新图书"
+            android:onClick="listenNewBook"/>
+
+        <Button
+            android:id="@+id/unlistenNewBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="停止监听新图书"
+            android:onClick="unListenNewBook"/>
+
+        <Button
+            android:id="@+id/startSocket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="启动socket测试"
+            android:onClick="startSocket"/>
     </LinearLayout>
 </FrameLayout>

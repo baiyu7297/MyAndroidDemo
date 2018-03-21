@@ -1,5 +1,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fantasy.android.demo">
+    
+    <permission android:name="com.fantasy.android.demo.android.permission.ACCESS_BOOK"
+        android:protectionLevel="normal"/>
+
+    <uses-permission android:name="com.fantasy.android.demo.android.permission.ACCESS_BOOK"/>
+
+    <!--允许应用程序改变网络状态-->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+
+    <!--允许应用程序改变WIFI连接状态-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+
+    <!--允许应用程序访问有关的网络信息-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <!--允许应用程序访问WIFI网卡的网络信息-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <!--允许应用程序完全使用网络-->
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -15,7 +35,18 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".android.socket.SocketTestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <service android:name=".android.OtherProcessService"
             android:process=":other"/>
+        <service android:name=".android.BookManagerService"
+            android:process=":bookRemote"/>
+        <service android:name=".android.socket.SocketService"
+            android:process=":socketRemote"/>
     </application>
 </manifest>
