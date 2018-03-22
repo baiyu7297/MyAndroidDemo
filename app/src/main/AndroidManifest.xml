@@ -48,5 +48,8 @@
             android:process=":bookRemote"/>
         <service android:name=".android.socket.SocketService"
             android:process=":socketRemote"/>
+        <service android:name=".android.BinderPoolService"
+            android:process=":binderpool"/>
+
     </application>
 </manifest>

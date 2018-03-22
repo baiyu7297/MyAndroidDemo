@@ -87,5 +87,24 @@
             android:layout_marginRight="30dp"
             android:text="启动socket测试"
             android:onClick="startSocket"/>
+
+        <Button
+            android:id="@+id/binderPoolAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="binder连接池计算加法"
+            android:onClick="onBinderPoolAdd"/>
+
+        <Button
+            android:id="@+id/binderPoolRect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="binder连接池计算面积"
+            android:onClick="onBinderPoolRect"/>
+
     </LinearLayout>
 </FrameLayout>

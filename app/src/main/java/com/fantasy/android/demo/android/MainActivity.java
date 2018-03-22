@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -51,6 +52,18 @@ public class MainActivity extends Activity {
         ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         int memeoryClass = activityManager.getMemoryClass();
         Log.d(TAG, "memeoryClass =" + memeoryClass);
+
+        getBinderPool();
+    }
+
+    private BinderPool mBinderPool;
+    private void getBinderPool() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mBinderPool = BinderPool.getInstance(MainActivity.this);
+            }
+        }).start();
     }
 
     public void onParcelClick(View v) {
@@ -287,5 +300,27 @@ public class MainActivity extends Activity {
     public void startSocket(View v) {
         Intent intent = new Intent(this, SocketTestActivity.class);
         startActivity(intent);
+    }
+
+    public void onBinderPoolRect(View v) {
+        if (mBinderPool == null) return;
+        try {
+            IRect rect = IRectImpl.asInterface(mBinderPool.queryBinder(BinderPool.BINDER_CODE_RECT));
+            int area = rect.area(20, 30);
+            Toast.makeText(MainActivity.this, "width20height30, area=" + area, Toast.LENGTH_SHORT).show();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onBinderPoolAdd(View v) {
+        if (mBinderPool == null) return;
+        try {
+            ICalc calc = ICalcImpl.asInterface(mBinderPool.queryBinder(BinderPool.BINDER_CODE_CALC));
+            int plus = calc.add(20, 30);
+            Toast.makeText(MainActivity.this, "20+30=" + plus, Toast.LENGTH_SHORT).show();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }
