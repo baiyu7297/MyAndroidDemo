@@ -15,7 +15,10 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -40,8 +43,8 @@ import rx.schedulers.Schedulers;
  */
 
 public class MainActivity extends Activity {
-    
-    private static final String TAG = "WANG_DEMO";
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +55,10 @@ public class MainActivity extends Activity {
         ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         int memeoryClass = activityManager.getMemoryClass();
         Log.d(TAG, "memeoryClass =" + memeoryClass);
+
+        // 获得TouchSlop
+        int touchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
+        Log.d(TAG, "touchSlop =" + touchSlop);
 
         getBinderPool();
     }
@@ -322,5 +329,10 @@ public class MainActivity extends Activity {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    public void onCircleViewTest(View v) {
+        Intent i = new Intent(this, CircleViewTestActivity.class);
+        startActivity(i);
     }
 }

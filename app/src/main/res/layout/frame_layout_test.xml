@@ -106,5 +106,14 @@
             android:text="binder连接池计算面积"
             android:onClick="onBinderPoolRect"/>
 
+        <Button
+            android:id="@+id/circleViewTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="circleview测试"
+            android:onClick="onCircleViewTest"/>
+
     </LinearLayout>
 </FrameLayout>
