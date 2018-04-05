@@ -7,8 +7,6 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-import com.fantasy.android.demo.IBinderPool;
-
 import java.util.concurrent.CountDownLatch;
 
 /**
