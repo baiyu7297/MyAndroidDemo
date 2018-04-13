@@ -335,4 +335,9 @@ public class MainActivity extends Activity {
         Intent i = new Intent(this, CircleViewTestActivity.class);
         startActivity(i);
     }
+
+    public void onNdkActivity(View v) {
+        Intent i = new Intent(this, JniTestActivity.class);
+        startActivity(i);
+    }
 }

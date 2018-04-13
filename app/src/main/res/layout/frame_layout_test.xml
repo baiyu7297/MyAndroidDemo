@@ -115,5 +115,13 @@
             android:text="circleview测试"
             android:onClick="onCircleViewTest"/>
 
+        <Button
+            android:id="@+id/ndkTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="ndk测试"
+            android:onClick="onNdkActivity"/>
     </LinearLayout>
 </FrameLayout>
