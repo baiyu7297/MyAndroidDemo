@@ -4,3 +4,5 @@ Android：学习AIDL，这一篇文章就够了(上)
 https://blog.csdn.net/luoyanglizi/article/details/51980630
 Android：学习AIDL，这一篇文章就够了(下)
 https://blog.csdn.net/luoyanglizi/article/details/52029091
+轻松理解 Android Binder，只需要读这一篇
+https://www.jianshu.com/p/bdef9e3178c9
