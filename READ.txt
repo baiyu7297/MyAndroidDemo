@@ -1,3 +1,6 @@
 https://www.zhihu.com/question/59104213
 WIN10鼠标卡顿什么原因？怎么解决？
-
+Android：学习AIDL，这一篇文章就够了(上)
+https://blog.csdn.net/luoyanglizi/article/details/51980630
+Android：学习AIDL，这一篇文章就够了(下)
+https://blog.csdn.net/luoyanglizi/article/details/52029091
