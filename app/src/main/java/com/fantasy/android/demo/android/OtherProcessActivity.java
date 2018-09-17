@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.fantasy.android.demo.MyApplication;
+
 /**
  * Created by fantasy on 2018/3/10.
  */

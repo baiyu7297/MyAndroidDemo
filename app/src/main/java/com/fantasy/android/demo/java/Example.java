@@ -23,6 +23,6 @@ public class Example {
     }
 
     public static void staticTest() {
-        System.out.print("Example staticTest/.......................................................................,m                                                                                                                                                                                                                                         ./");
+        System.out.print("Example staticTest");
     }
 }

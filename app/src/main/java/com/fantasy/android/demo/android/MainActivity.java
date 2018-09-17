@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.fantasy.android.demo.R;
+import com.fantasy.android.demo.android.job.JobServiceActivity;
 import com.fantasy.android.demo.android.socket.SocketService;
 import com.fantasy.android.demo.android.socket.SocketTestActivity;
 
@@ -338,6 +339,11 @@ public class MainActivity extends Activity {
 
     public void onNdkActivity(View v) {
         Intent i = new Intent(this, JniTestActivity.class);
+        startActivity(i);
+    }
+
+    public void onJobServiceActivity(View v) {
+        Intent i = new Intent(this, JobServiceActivity.class);
         startActivity(i);
     }
 }

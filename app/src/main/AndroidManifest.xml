@@ -56,6 +56,14 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity android:name=".android.job.JobServiceActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <service android:name=".android.job.MyJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name=".android.OtherProcessService"
             android:process=":other"/>
         <service android:name=".android.BookManagerService"
