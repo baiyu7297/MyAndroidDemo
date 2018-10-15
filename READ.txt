@@ -6,3 +6,23 @@ Android：学习AIDL，这一篇文章就够了(下)
 https://blog.csdn.net/luoyanglizi/article/details/52029091
 轻松理解 Android Binder，只需要读这一篇
 https://www.jianshu.com/p/bdef9e3178c9
+
+launcher左屏插件化方案
+应用宝装机必备
+文件夹应用推荐（应用宝 ironsource）
+文件夹自动分类
+用户行为统计上报（flurry firebase umeng）
+app crash追踪
+Rshub应用推荐平台sdk封装
+
+IOS九宫格launcher文件夹 下拉搜索 动画效果 动态模糊效果
+
+最近任务左右卡片式滑动效果优化
+SystemUI内存优化（context泄露）
+下拉模糊流畅度优化
+无法解锁问题（scrimcontroller没有释放onexpandingfinish（））
+
+launcher动画效果和流畅度优化
+画卷锁屏数据部分
+
+U型屏浮动通知

@@ -40,4 +40,16 @@ public class MyApplication extends Application{
         super.attachBaseContext(base);
         Log.d(TAG, "attachBaseContext->" + System.identityHashCode(hashCode()));
     }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        Log.d(TAG, "onLowMemory--->");
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        Log.d(TAG, "onTrimMemory--->");
+    }
 }

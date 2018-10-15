@@ -33,6 +33,7 @@ public class NumberPrinter {
                     printLock.notifyAll();
                     try {
                         printLock.wait();
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
