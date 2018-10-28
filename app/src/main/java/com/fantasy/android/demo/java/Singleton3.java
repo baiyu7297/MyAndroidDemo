@@ -23,7 +23,7 @@ public class Singleton3 {
 
     }
 
-    public static class SingletonFactory {
+    private static class SingletonFactory {
         private static final Singleton3 mInstance = new Singleton3();
     }
 

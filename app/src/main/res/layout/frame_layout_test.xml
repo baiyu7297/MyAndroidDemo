@@ -124,6 +124,13 @@
             android:text="ndk测试"
             android:onClick="onNdkActivity"/>
 
+`        <Button
+            android:id="@+id/asyncTaskTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AsyncTask"
+            android:onClick="onAsyncTaskTest"/>
+
         <Button
             android:id="@+id/jobServiceTest"
             android:layout_width="match_parent"

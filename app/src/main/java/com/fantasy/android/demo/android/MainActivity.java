@@ -6,7 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.Binder;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -15,16 +15,12 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.fantasy.android.demo.R;
 import com.fantasy.android.demo.android.job.JobServiceActivity;
-import com.fantasy.android.demo.android.socket.SocketService;
 import com.fantasy.android.demo.android.socket.SocketTestActivity;
 
 import java.io.File;
@@ -338,12 +334,75 @@ public class MainActivity extends Activity {
     }
 
     public void onNdkActivity(View v) {
-        Intent i = new Intent(this, JniTestActivity.class);
+        //Intent i = new Intent(this, JniTestActivity.class);
+        Intent i = new Intent();
+        i.addCategory(Intent.CATEGORY_DEFAULT);
         startActivity(i);
     }
 
     public void onJobServiceActivity(View v) {
         Intent i = new Intent(this, JobServiceActivity.class);
         startActivity(i);
+    }
+
+    public void onAsyncTaskTest(View v) {
+        MyAsyncTask t1 = new MyAsyncTask();
+        t1.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"11");
+        MyAsyncTask t2 = new MyAsyncTask();
+        t2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"22");
+        MyAsyncTask t3 = new MyAsyncTask();
+        t3.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"33");
+        MyAsyncTask t4 = new MyAsyncTask();
+        t4.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"44");
+        MyAsyncTask t5 = new MyAsyncTask();
+        t5.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"55");
+        MyAsyncTask t6 = new MyAsyncTask();
+        t6.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"66");
+        MyAsyncTask t7 = new MyAsyncTask();
+        t7.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"77");
+        MyAsyncTask t8 = new MyAsyncTask();
+        t8.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"88");
+        MyAsyncTask t9 = new MyAsyncTask();
+        t9.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"99");
+        MyAsyncTask t10 = new MyAsyncTask();
+        t10.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"1010");
+    }
+
+    private static class MyAsyncTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... strings) {
+            try {
+                Thread.sleep(1000);
+                Log.d(TAG, "asyncTask doInBackground param=" + strings[0]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onCancelled(Void aVoid) {
+            super.onCancelled(aVoid);
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
     }
 }
