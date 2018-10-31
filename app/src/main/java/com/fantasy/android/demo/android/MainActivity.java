@@ -33,6 +33,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import rx.Observable;
@@ -346,4 +347,31 @@ public class MainActivity extends Activity {
         Intent i = new Intent(this, JobServiceActivity.class);
         startActivity(i);
     }
+
+    public void onGassBLurActivity(View v) {
+        Intent i = new Intent(this, GassTestActivity.class);
+        startActivity(i);
+    }
+
+
+    private static class MyHandler extends Handler{
+
+        private WeakReference<MainActivity> mMyActivity;
+        public MyHandler(MainActivity activity) {
+            mMyActivity = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            final MainActivity activity = mMyActivity.get();
+            if (activity != null) {
+                activity.doSomeWork();
+            }
+        }
+    };
+
+    public void doSomeWork() {
+        // do
+    }
+
 }
