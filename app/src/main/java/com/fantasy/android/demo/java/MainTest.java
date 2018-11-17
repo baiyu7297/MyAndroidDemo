@@ -1,7 +1,6 @@
 package com.fantasy.android.demo.java;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * Created by fantasy on 2018/3/4.

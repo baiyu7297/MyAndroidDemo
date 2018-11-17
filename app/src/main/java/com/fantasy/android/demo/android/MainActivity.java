@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.AsyncTask;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -15,12 +16,16 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.fantasy.android.demo.R;
 import com.fantasy.android.demo.android.job.JobServiceActivity;
+import com.fantasy.android.demo.android.socket.SocketService;
 import com.fantasy.android.demo.android.socket.SocketTestActivity;
 
 import java.io.File;
@@ -29,6 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import rx.Observable;
@@ -334,9 +340,7 @@ public class MainActivity extends Activity {
     }
 
     public void onNdkActivity(View v) {
-        //Intent i = new Intent(this, JniTestActivity.class);
-        Intent i = new Intent();
-        i.addCategory(Intent.CATEGORY_DEFAULT);
+        Intent i = new Intent(this, JniTestActivity.class);
         startActivity(i);
     }
 
@@ -345,6 +349,31 @@ public class MainActivity extends Activity {
         startActivity(i);
     }
 
+    public void onGassBLurActivity(View v) {
+        Intent i = new Intent(this, GassTestActivity.class);
+        startActivity(i);
+    }
+
+
+    private static class MyHandler extends Handler{
+
+        private WeakReference<MainActivity> mMyActivity;
+        public MyHandler(MainActivity activity) {
+            mMyActivity = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            final MainActivity activity = mMyActivity.get();
+            if (activity != null) {
+                activity.doSomeWork();
+            }
+        }
+    };
+
+    public void doSomeWork() {
+        // do
+    }
     public void onAsyncTaskTest(View v) {
         MyAsyncTask t1 = new MyAsyncTask();
         t1.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"11");
