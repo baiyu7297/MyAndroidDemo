@@ -12,6 +12,9 @@
     <include
         layout="@layout/merge_test"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -139,5 +142,15 @@
             android:layout_marginRight="30dp"
             android:text="JobService测试"
             android:onClick="onJobServiceActivity"/>
+
+        <Button
+            android:id="@+id/baiduFaceDetect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="百度人脸检测测试"
+            android:onClick="onBaiduFaceDetect"/>
     </LinearLayout>
+    </ScrollView>
 </FrameLayout>

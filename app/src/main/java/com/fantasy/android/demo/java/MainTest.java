@@ -1,6 +1,9 @@
 package com.fantasy.android.demo.java;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by fantasy on 2018/3/4.
@@ -204,6 +207,27 @@ public class MainTest {
                 right--;
             }
         }
+    }
+
+
+    private int getFirstK(int[] array, int k) {
+        int begin = 0;
+        int end = array.length - 1;
+        while (begin <= end) {
+            int mid = (begin + end) / 2;
+            if (array[mid] > k) {
+                end = mid - 1;
+            } else if (array[mid] < k) {
+                begin = mid + 1;
+            } else {
+                if (mid == 0 || (mid > 0 && array[mid-1] != k)) {
+                    return mid;
+                } else {
+                    end = mid - 1;
+                }
+            }
+        }
+        return -1;
     }
 
 }

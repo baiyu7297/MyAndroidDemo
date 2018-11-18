@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.fantasy.android.demo.R;
+import com.fantasy.android.demo.android.baidu.face.FaceDetect;
 import com.fantasy.android.demo.android.job.JobServiceActivity;
 import com.fantasy.android.demo.android.socket.SocketService;
 import com.fantasy.android.demo.android.socket.SocketTestActivity;
@@ -36,6 +37,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -48,6 +52,9 @@ import rx.schedulers.Schedulers;
 public class MainActivity extends Activity {
 
     private static final String TAG = "MainActivity";
+
+    private ThreadPoolExecutor mMyExecutor;
+    private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors() + 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +71,12 @@ public class MainActivity extends Activity {
         Log.d(TAG, "touchSlop =" + touchSlop);
 
         getBinderPool();
+
+        mMyExecutor = new ThreadPoolExecutor(CPU_COUNT,
+                CPU_COUNT,
+                10000,
+                TimeUnit.MILLISECONDS,
+                new SynchronousQueue<>());
     }
 
     private BinderPool mBinderPool;
@@ -350,8 +363,8 @@ public class MainActivity extends Activity {
     }
 
     public void onGassBLurActivity(View v) {
-        Intent i = new Intent(this, GassTestActivity.class);
-        startActivity(i);
+        //Intent i = new Intent(this, GassTestActivity.class);
+        //startActivity(i);
     }
 
 
@@ -433,5 +446,18 @@ public class MainActivity extends Activity {
         protected void onCancelled() {
             super.onCancelled();
         }
+    }
+
+    public void onBaiduFaceDetect(View view) {
+
+        mMyExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                long current = System.currentTimeMillis();
+                FaceDetect.detect();
+                Log.w(TAG, "face detect used=" + (System.currentTimeMillis() - current));
+            }
+        });
+
     }
 }
